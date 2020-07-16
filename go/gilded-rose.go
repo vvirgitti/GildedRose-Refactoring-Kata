@@ -25,6 +25,10 @@ func decrease(value int) int {
 	return value - 1
 }
 
+func increase(value int) int {
+	return value + 1
+}
+
 func UpdateQuality(items []*Item) {
 	for i, item := range items {
 		itemName := item.name
@@ -35,11 +39,11 @@ func UpdateQuality(items []*Item) {
 			}
 		} else {
 			if items[i].quality < 50 {
-				items[i].quality = items[i].quality + 1
+				items[i].quality =  increase(items[i].quality)
 				if isBackstage(itemName) && items[i].sellIn < 11 && items[i].quality < 50 {
-					items[i].quality = items[i].quality + 1
+					items[i].quality = increase(items[i].quality)
 					if items[i].sellIn < 6 && items[i].quality < 50 {
-						items[i].quality = items[i].quality + 1
+						items[i].quality = increase(items[i].quality)
 					}
 				}
 			}
@@ -58,7 +62,7 @@ func UpdateQuality(items []*Item) {
 				}
 			} else {
 				if items[i].quality < 50 {
-					items[i].quality = items[i].quality + 1
+					items[i].quality =  increase(items[i].quality)
 				}
 			}
 		}
