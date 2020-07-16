@@ -29,12 +29,22 @@ func increase(value int) int {
 	return value + 1
 }
 
+func hasPositiveQuality(value int) bool {
+	return value > 0
+}
+
+func decreaseSellin(item *Item) {
+	if !isSulfuras(item.name) {
+		item.sellIn = decrease(item.sellIn)
+	}
+}
+
 func UpdateQuality(items []*Item) {
 	for i, item := range items {
 		itemName := item.name
 
 		if !isAgedBrie(itemName) && !isBackstage(itemName) {
-			if items[i].quality > 0 && !isSulfuras(itemName) {
+			if hasPositiveQuality(items[i].quality) && !isSulfuras(itemName) {
 				items[i].quality =  decrease(items[i].quality)
 			}
 		} else {
@@ -49,13 +59,11 @@ func UpdateQuality(items []*Item) {
 			}
 		}
 
-		if !isSulfuras(itemName) {
-			items[i].sellIn =  decrease(items[i].sellIn)
-		}
+		decreaseSellin(items[i])
 
 		if items[i].sellIn < 0 {
 			if !isAgedBrie(itemName) {
-				if !isBackstage(itemName) && items[i].quality > 0 && !isSulfuras(itemName) {
+				if !isBackstage(itemName) &&  hasPositiveQuality(items[i].quality) && !isSulfuras(itemName) {
 					items[i].quality =  decrease(items[i].quality)
 				} else {
 					items[i].quality = items[i].quality - items[i].quality
