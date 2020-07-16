@@ -21,13 +21,17 @@ func isSulfuras(itemName string) bool {
 	return itemName == sulfuras
 }
 
+func decrease(value int) int {
+	return value - 1
+}
+
 func UpdateQuality(items []*Item) {
-	for i := 0; i < len(items); i++ {
-		itemName := items[i].name
+	for i, item := range items {
+		itemName := item.name
 
 		if !isAgedBrie(itemName) && !isBackstage(itemName) {
 			if items[i].quality > 0 && !isSulfuras(itemName) {
-				items[i].quality = items[i].quality - 1
+				items[i].quality =  decrease(items[i].quality)
 			}
 		} else {
 			if items[i].quality < 50 {
@@ -42,13 +46,13 @@ func UpdateQuality(items []*Item) {
 		}
 
 		if !isSulfuras(itemName) {
-			items[i].sellIn = items[i].sellIn - 1
+			items[i].sellIn =  decrease(items[i].sellIn)
 		}
 
 		if items[i].sellIn < 0 {
 			if !isAgedBrie(itemName) {
 				if !isBackstage(itemName) && items[i].quality > 0 && !isSulfuras(itemName) {
-					items[i].quality = items[i].quality - 1
+					items[i].quality =  decrease(items[i].quality)
 				} else {
 					items[i].quality = items[i].quality - items[i].quality
 				}
