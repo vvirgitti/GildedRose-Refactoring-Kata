@@ -61,16 +61,18 @@ func UpdateQuality(items []*Item) {
 
 		decreaseSellin(items[i])
 
+
+
 		if items[i].sellIn < 0 {
+			if isAgedBrie(itemName) && items[i].quality < 50 {
+				items[i].quality =  increase(items[i].quality)
+			}
+
 			if !isAgedBrie(itemName) {
 				if !isBackstage(itemName) &&  hasPositiveQuality(items[i].quality) && !isSulfuras(itemName) {
 					items[i].quality =  decrease(items[i].quality)
 				} else {
 					items[i].quality = items[i].quality - items[i].quality
-				}
-			} else {
-				if items[i].quality < 50 {
-					items[i].quality =  increase(items[i].quality)
 				}
 			}
 		}
