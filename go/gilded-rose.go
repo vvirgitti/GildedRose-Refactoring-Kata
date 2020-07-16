@@ -5,14 +5,13 @@ type Item struct {
 	sellIn, quality int
 }
 
-//func IsSpecialItem(itemName string) bool {
-//
-//}
+const agedBrie = "Aged Brie"
+const backstage = "Backstage passes to a TAFKAL80ETC concert"
+const sulfuras = "Sulfuras, Hand of Ragnaros"
+
 
 func UpdateQuality(items []*Item) {
-	agedBrie := "Aged Brie"
-	backstage := "Backstage passes to a TAFKAL80ETC concert"
-	sulfuras := "Sulfuras, Hand of Ragnaros"
+
 
 	for i := 0; i < len(items); i++ {
 
