@@ -38,10 +38,8 @@ func UpdateQuality(items []*Item) {
 
 		if items[i].sellIn < 0 {
 			if items[i].name != agedBrie {
-				if items[i].name != backstage {
-					if items[i].quality > 0 && items[i].name != sulfuras {
-						items[i].quality = items[i].quality - 1
-					}
+				if items[i].name != backstage && items[i].quality > 0 && items[i].name != sulfuras {
+					items[i].quality = items[i].quality - 1
 				} else {
 					items[i].quality = items[i].quality - items[i].quality
 				}
